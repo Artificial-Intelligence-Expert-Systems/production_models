@@ -19,9 +19,9 @@ import {
 } from "./actions";
 
 const initialState = {
-    tasks: [],
-    interface: null,
-    interfacesForTask: [],
+    facts: [],
+    productions: [],
+    conclusions: [],
     loaders: {
         tasks: false,
         interface: false,
@@ -34,7 +34,7 @@ const rootReducer = function(state = initialState, action) {
         case GET_TASKS:
             return {
                 ...state,
-                tasks: action.payload
+                facts: action.payload
             }
         case ADD_TASK:
             return {
@@ -97,18 +97,15 @@ const rootReducer = function(state = initialState, action) {
     }
 }
 
-const store = createStore(
-    rootReducer, compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-)
+// const store = createStore(
+//     rootReducer, compose(
+//         applyMiddleware(thunk)
+//     )
+// )
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}>
-          <App />
-      </Provider>
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

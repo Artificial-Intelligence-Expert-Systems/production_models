@@ -25,6 +25,13 @@ def create_fact(fact_name):
     except Exception as e:
         return(str(e))
 
+@app.route("/api/fact/get_all")
+def get_all_facts():
+    try:
+        facts = Fact.query.all()
+        return jsonify([ fact.serialize() for fact in facts ])
+    except Exception as e:
+        return(str(e))
 
 @app.route("/api/production/create")
 def create_productions():
@@ -43,8 +50,15 @@ def create_productions():
     except Exception as e:
         return(str(e))
 
+@app.route("/api/<session_id>/production/get_all")
+def get_all_productions(session_id):
+    try:
+        productions = Production.query.filter_by(session_id=session_id).all()
+        return jsonify([ res.serialize() for res in productions ])
+    except Exception as e:
+        return(str(e))
 
-@app.route("/api/<session_id>/get_conclusions")
+@app.route("/api/<session_id>/get_conclusions", methods=['POST'])
 def get_conclusions(session_id):
     try:
         known_facts = request.get_json()

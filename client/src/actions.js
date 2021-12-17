@@ -17,10 +17,10 @@ export const TOGGLE_LOADER_ALL_INTERFACES = 'TOGGLE_LOADER/ALL_INTERFACES';
 export const ADD_INTERFACE = 'INTERFACE/ADD';
 export const REMOVE_INTERFACE = 'INTERFACE/REMOVE';
 
-export const getTasks = () => {
+export const getFacts = () => {
     return async (dispatch) => {
         dispatch({type: TOGGLE_LOADER_TASKS});
-        const response = await axios.get(`${baseUrl}/api/task/get_all`);
+        const response = await axios.get(`${baseUrl}/api/fact/get_all`);
         dispatch({type: TOGGLE_LOADER_TASKS});
 
         dispatch({
