@@ -1,1 +1,1 @@
-# production_models
+# bayesian_multi-armed_bandits
